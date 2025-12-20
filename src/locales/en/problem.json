@@ -13,6 +13,9 @@
       "solvedCount": "Solved count",
       "startTime": "Contest date"
     },
+    "isOnlyTrue": "Current tags only",
+    "isOnlyFalse": "Includes current tags",
+    "FiltBut": "Filters",
     "filtersTitle": "Filters",
     "filters": {
       "tags": "Tags",

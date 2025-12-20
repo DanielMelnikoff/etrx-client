@@ -13,6 +13,9 @@
       "solvedCount": "Количество сдавших",
       "startTime": "Дата контеста"
     },
+    "isOnlyTrue": "Только выбранные теги",
+    "isOnlyFalse": "Не только выбранные теги",
+    "FiltBut": "Фильтры",
     "filtersTitle": "Фильтры",
     "filters": {
       "tags": "Теги",

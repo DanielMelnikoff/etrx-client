@@ -14,6 +14,7 @@ import { Column, SortOrder } from "@/app/models/TableTypes";
 import { Problem, ProblemForTable } from "@/app/models/Problem";
 import { unixToFormattedDate } from "@/libs/date";
 
+
 const DEFAULT_PAGE = 1;
 const DEFAULT_SORT_FIELD: keyof Problem = "contestId";
 const DEFAULT_SORT_ORDER: SortOrder = "desc";
@@ -156,6 +157,14 @@ function ProblemClientPage() {
     setQueryParams({ page: newPage });
   };
 
+  const toggleFilters = () => {
+    var field = document.getElementById("filters");
+    if(field){
+       if(field.className == "col-start-2 hidden") field.className = "col-start-2";
+       else field.className = "col-start-2 hidden";
+    }
+  }
+
   const columns: Column<ProblemForTable>[] = useMemo(
     () => [
       { key: "contestId", header: t("problem:tableHeaders.contest"), accessor: "contestId" },
@@ -201,17 +210,29 @@ function ProblemClientPage() {
         {t("problem:problemsTableTitle")}
       </h1>
 
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center mb-4">
-        <div className="col-start-1 flex justify-center">
+      
+
+      <div className="flex flex-col">
+        
+        <div className="col-start-1 flex justify-around w-[22%] self-center">
           <button
-            className="px-2 py-2 bg-blue-500 text-white rounded self-center"
+            className="px-2 py-1.5 bg-blue-500 text-white rounded self-center select-none hover:bg-blue-600"
             onClick={() => setQueryParams({ isOnly: !isOnly, page: 1 })}
           >
-            {isOnly ? "isOnly = true" : "isOnly = false"}
+            {isOnly ? t('problem:isOnlyTrue') : t('problem:isOnlyFalse')}
+          </button>
+          <button
+            className="px-2 py-1.5 bg-slate-500 text-white rounded self-center select-none hover:bg-slate-600"
+            onClick={toggleFilters}
+          >
+            {t('problem:FiltBut')}
           </button>
         </div>
 
-        <div className="col-start-2">
+        <div 
+        className="col-start-2 hidden"
+        id="filters"
+        >
           
           <TagsFilter
             selectedTags={selectedTags}
